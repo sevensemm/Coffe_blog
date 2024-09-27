@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <form>
+        <table>
+            <caption> <h1>Coffeе blog</h1> </caption>
+            <tr>
+                <th>
+                    <p1>Название напитка</p1>
+                </th>
+                <th>
+                    <input type="text" placeholder="Американо" name="title">
+                </th>
+            </tr>
+    
+            <tr>
+                <th>
+                    <p1>Сорт кофе</p1>
+                </th>
+                <th>
+                    <select name="sort">
+                        <option>Гватемала</option>
+                        <option>Пять зёрен</option>
+                        <option>Турецкий</option>
+                        <option>Азербайджанский</option> 
+                    <select>
+                </th>
+            </tr>
+    
+            <tr>
+                <table2> 
+                    <tr >
+                        <th> <p1>Крепеость обжарки</p1> </th> 
+                        <th>
+                            <label>Крепкая</label> <input type="radio" value="1" name="strong">  <br>
+                            <label>Средняя</label> <input type="radio"  value="2" name="strong"> <br>
+                            <label>Лёгкая</label> <input type="radio"  value="3" name="strong"> <br>
+                        </th>            
+                </table2>
+            </tr>
+    
+            <tr>
+                <th>
+                    <p1>Изображение</p1>
+                </th>
+                <th>
+                    <input type="text" name="image" placeholder="https://avatars.mds.yandex.net/i?id=b14aac9d29499c8287f7d7a47a938c71b2852a9f-5235721-images-thumbs&n=13">
+                </th>
+            </tr>
+    
+            <tr>
+                <th>
+                    <p1>Стоимость напитка</p1>
+                </th>
+                <th>
+                    <input type="text" name="cost" placeholder="100">
+                </th>
+            </tr>
+    
+        </table>     
+    
+        <p1>Описание</p1>            
+        <textarea type="text"  placeholder="Немного о напитках"></textarea> <br> <br>
+    
+        <input type="submit" name="description" value="Добавить напиток">
+    </form>
+
+    <table id="table" border="2">
+        <thead>
+            <th>Изображение</th>
+            <th>Название</th>
+            <th>Сорт</th>
+            <th>Крепкость обжарки</th>
+            <th>Стоимость</th>
+            <th>Описание</th>
+        </thead>
+    </table>
+
+    </body>
+
+<script> 
+    const f = document.forms[0]; 
+    let tr = document.getElementById("table"); 
+    let t = tr; 
+    f.addEventListener("submit", (e) => { 
+        e.preventDefault(); 
+        let body = {}; 
+        for (let i = 0; i < f.elements.length; i++) { 
+            let tag = f[i]; 
+            if (tag.name) { 
+                if (tag.type === "radio" && tag.checked) { 
+                    body[tag.name] = tag.value; 
+                } else if (tag.type !== "radio") { 
+                    body[tag.name] = tag.value; 
+                } 
+            } 
+        } 
+        console.log(body); 
+        let html = "<tr>"; 
+        html += `<td><img src="${body.image}" width="50" alt="${body.title}"></td>`; 
+        html += `<td>${body.title || ""}</td>`; 
+        html += `<td>${body.sort || ""}</td>`; 
+        html += `<td>${body.strong || ""}</td>`; 
+        html += `<td>${body.cost || ""}</td>`; 
+        html += `<td>${body.description || ""}</td>`; 
+        html += "</tr>" 
+        t.innerHTML += html; 
+    }) 
+</script>
+</html>
